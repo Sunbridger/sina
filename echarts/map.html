@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>map制作</title>
+	<script src="js/echarts.min.js" ></script>
+    <script src="js/china.js" ></script>
+</head>
+<body>
+	<div id="main" style="width: 1000px;height: 500px"></div>
+	<script>
+		function randomData(){
+			return Math.floor(Math.random()*1000);
+		}
+	var mydata = [  
+        {name: '北京',value: '800'},{name: '天津',value: randomData() },  
+        {name: '上海',value: randomData() },{name: '重庆',value: randomData() },  
+        {name: '河北',value: randomData() },{name: '河南',value: randomData() },  
+        {name: '云南',value: randomData() },{name: '辽宁',value: randomData() },  
+        {name: '黑龙江',value: randomData() },{name: '湖南',value: randomData() },  
+        {name: '安徽',value: randomData() },{name: '山东',value: randomData() },  
+        {name: '新疆',value: randomData() },{name: '江苏',value: randomData() },  
+        {name: '浙江',value: randomData() },{name: '江西',value: randomData() },  
+        {name: '湖北',value: randomData() },{name: '广西',value: randomData() },  
+        {name: '甘肃',value: randomData() },{name: '山西',value: randomData() },  
+        {name: '内蒙古',value: randomData() },{name: '陕西',value: randomData() },  
+        {name: '吉林',value: randomData() },{name: '福建',value: randomData() },  
+        {name: '贵州',value: randomData() },{name: '广东',value: randomData() },  
+        {name: '青海',value: randomData() },{name: '西藏',value: randomData() },  
+        {name: '四川',value: randomData() },{name: '宁夏',value: randomData() },  
+        {name: '海南',value: randomData() },{name: '台湾',value: randomData() },  
+        {name: '香港',value: randomData() },{name: '澳门',value: randomData() }  
+    ];
+    var myareaStyle={
+    	color:["rgba(250,250,250,0.3)", "rgb(255,225,224)"],
+    // color:['rgba(0,0,0,0.3)','rgba(20,200,20,0.3)'],//分隔区域颜色。分隔区域会按数组中颜色的顺序依次循环设置颜色。默认是一个深浅的间隔色。
+    // shadowColor:"blue",          //阴影颜色
+    // shadowOffsetX:10,            //阴影水平方向上的偏移距离。
+    // shadowOffsetY:0,            //阴影垂直方向上的偏移距离
+    // shadowBlur:10,              //图形阴影的模糊大小。
+    opacity:1,                  //图形透明度。支持从 0 到 1 的数字，为 0 时不绘制该图形
+};
+    var optionMap = {  
+                backgroundColor: '#FFFFFF',  
+                title: {  
+                    text: '全国地图大数据',  
+                    subtext: '',  
+                    x:'center'  
+                },  
+                tooltip : {  //提示框组件
+                    trigger: 'item',
+                    formatter: function (mydata) {
+					        console.log(mydata,'s')
+					        var res = mydata.name + '<br/>'
+					           res += mydata.seriesName + '：' 
+					               + mydata.value + '<br/>'
+					         return res
+					       }
+                },  
+                toolbox:{                                //是否显示工具栏组件
+				    orient:"vertical",  
+				    feature : {
+				        dataView : {                            //
+				            show: true,                         //是否显示该工具。
+				            title:"数据视图",
+				            readOnly: false,                    //是否不可编辑（只读）
+				            lang: ['数据视图', '关闭', '刷新'],  //数据视图上有三个话术，默认是['数据视图', '关闭', '刷新']
+				            backgroundColor:"#fff",             //数据视图浮层背景色。
+				            textareaColor:"#fff",               //数据视图浮层文本输入区背景色
+				            textareaBorderColor:"#333",         //数据视图浮层文本输入区边框颜色
+				            textColor:"#000",                    //文本颜色。
+				            buttonColor:"#c23531",              //按钮颜色。
+				            buttonTextColor:"#fff",             //按钮文本颜色。
+				        },
+				    },
+				    zlevel:0,                                   //所属图形的Canvas分层，zlevel 大的 Canvas 会放在 zlevel 小的 Canvas 的上面
+				    z:2,                                         //所属组件的z分层，z值小的图形会被z值大的图形覆盖
+				    left:"20%",                              //组件离容器左侧的距离,'left', 'center', 'right','20%'
+				    top:"top",                                   //组件离容器上侧的距离,'top', 'middle', 'bottom','20%'
+				    right:"auto",                               //组件离容器右侧的距离,'20%'
+				    bottom:"auto",                              //组件离容器下侧的距离,'20%'
+				    width:"20%",                               //图例宽度
+				    height:"auto",                              //图例高度
+				},
+                //左侧小导航图标
+                visualMap: {  
+                    show : true,  
+                    x: 'left',  
+                    y: 'center',  
+                    splitList: [   
+                        {start: 600, end:800},{start: 800, end:1000},
+                        {start: 500, end:600},{start: 400, end: 500},  
+                        {start: 300, end: 400},{start: 200, end: 300},  
+                        {start: 100, end: 200},{start: 0, end: 100},  
+                    ],
+                    // color:['red','pink','yellow','blue']
+                },  
+                
+                //配置属性
+                series: [{  
+                    name: '数据',  
+                    type: 'map',  
+                    mapType: 'china',  
+                    roam: true,  
+                    label: {  
+                        normal: {  
+                            show: true  //省份名称 
+                        }
+                    },
+            		itemStyle: {
+            			emphasis :{ 
+            				color:'red',
+            				areaColor: 'blue' 
+            			}
+            		} ,
+                    data:mydata  //数据
+                }]  
+            };  
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        myChart.setOption(optionMap);
+	</script>
+</body>
+</html>
