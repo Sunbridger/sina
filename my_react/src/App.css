@@ -49,3 +49,15 @@
   right: 20px;
   top: -20px;
 }
+.pub{
+  position: absolute;
+  border-radius: 10px;
+  width: 100px;
+  height: 60px;
+  box-shadow: 0 5px 5px 5px rgba(21,20,201,.2);
+  right: 323px;
+  top: 135px;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+}

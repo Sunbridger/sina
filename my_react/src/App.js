@@ -13,6 +13,7 @@ class App extends Component {
   render(){
     return (
       <div>
+        <div className='pub' onClick={this.iknow.bind(this)}>发布圈子</div>
       {
         !this.state.tipForNewBox&&(
           <div className='div_box '>
