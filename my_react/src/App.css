@@ -30,3 +30,22 @@
     transform: rotate(360deg);
   }
 }
+.div_box{
+  width: 300px;
+  height: 200px;
+  box-shadow: 0px 2px 2px 2px rgba(17, 17, 17, .70);;
+  text-align: center;
+  position: relative;
+  top: 200px;
+  left: 200px;
+}
+.iconsquare {
+  display: block;
+  border-bottom: 10px solid rgba(17, 17, 17, .70);
+  border-right: 8px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: 8px solid transparent;
+  position: absolute;
+  right: 20px;
+  top: -20px;
+}
