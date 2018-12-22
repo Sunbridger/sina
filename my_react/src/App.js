@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     this.state={
       divider:[],
-      currentPage:1
+      currentPage:1,
+      totalCount:(Math.random()*150+80)
     }
     this.pageSize = 10;
   }
@@ -15,7 +16,7 @@ class App extends Component {
     // let currentPage = this.state.currentPage
     // let totalCount = this.state.totalCount
     let currentPage = this.state.currentPage;
-    let totalCount = 24;
+    let totalCount = this.state.totalCount;
     if (!currentPage || !totalCount) {
       this.setState({
         divider: []
@@ -38,8 +39,23 @@ class App extends Component {
       }
     }
     if(totalPageNum && (divider[currentPage].active = true)){  
-      if(totalPageNum>10){
-        console.log(currentPage,'这页是当前的','===因为大10 所以得打点考虑。。。')
+      if (totalPageNum > 10) {
+        if (currentPage < 6) {
+          divider.splice(7, totalPageNum - currentPage - 6, {
+            dots: true
+          })
+        } else if (currentPage > totalPageNum - 7) {
+          divider.splice(3, currentPage - 6, {
+            dots: true
+          })
+        } else {
+          divider.splice(3, currentPage - 4, {
+            dots: true
+          })
+          divider.splice(8, totalPageNum - currentPage - 5, {
+            dots: true
+          })
+        }
       }
     }
     this.setState({
@@ -49,7 +65,7 @@ class App extends Component {
   setPage(currentPage){
     this.setState({
       currentPage
-    })
+    },this.createDivider)
   }
   componentDidMount(){
     this.createDivider()
