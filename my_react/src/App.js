@@ -6,14 +6,15 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      divider:''
+      divider:[],
+      currentPage:1
     }
     this.pageSize = 10;
   }
   createDivider(n) {
     // let currentPage = this.state.currentPage
     // let totalCount = this.state.totalCount
-    let currentPage = 1;
+    let currentPage = this.state.currentPage;
     let totalCount = 24;
     if (!currentPage || !totalCount) {
       this.setState({
@@ -45,14 +46,34 @@ class App extends Component {
       divider
     })
   }
+  setPage(currentPage){
+    this.setState({
+      currentPage
+    })
+  }
   componentDidMount(){
     this.createDivider()
   }
   render(){
-    console.log(this.state.divider,'divider....')
+    let me = this;
     return (
-      <div>
-        .....
+      <div className="page_num">
+        {me.state.divider.map((item, index) => {
+          if (item.dots) {
+            return <span key={index}>......</span>
+          } else {
+            return (
+              <a
+                key={index}
+                className={item.active ? 'page_num_a active' : 'page_num_a'}
+                href="javascript:void(0)"
+                onClick={me.setPage.bind(me, item.num)}
+              >
+                {item.num}
+              </a>
+            )
+          }
+        })}
       </div>
     )
   }

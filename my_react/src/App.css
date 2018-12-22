@@ -61,3 +61,51 @@
   line-height: 60px;
   cursor: pointer;
 }
+
+.page_num {
+	text-align: right;
+	margin: 40px 0 34px 0;
+}
+
+.page_num_a.active {
+	background: #ff4c48;
+	border-color: #ff4c48;
+	color: #fff;
+}
+
+.page_num_a {
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	text-align: center;
+	line-height: 28px;
+	font-size: 12px;
+	color: #444444;
+	border: 1px solid #efefef;
+	margin-left: 8px;
+	border-radius: 4px;
+}
+
+.page_num_a:link {
+	color: #444444;
+}
+
+.page_num_a:visited {
+	color: #444444;
+}
+
+.page_num_a:hover {
+	background: #ff4c48;
+	border-color: #ff4c48;
+	color: #fff;
+}
+
+.page_num_a:active {
+	color: #fff;
+}
+
+.page_num_a.active {
+	background: #ff4c48;
+	border-color: #ff4c48;
+	color: #fff;
+}
