@@ -1,28 +1,58 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-var localStorage = window.localStorage;
+
 class App extends Component {
-  state = {
-    tipForNewBox:localStorage.tipForNewBox
+  constructor(props){
+    super(props);
+    this.state={
+      divider:''
+    }
+    this.pageSize = 10;
   }
-  iknow(){
-    localStorage.setItem('tipForNewBox',true)
-    this.setState({tipForNewBox:localStorage.tipForNewBox})
+  createDivider(n) {
+    // let currentPage = this.state.currentPage
+    // let totalCount = this.state.totalCount
+    let currentPage = 1;
+    let totalCount = 24;
+    if (!currentPage || !totalCount) {
+      this.setState({
+        divider: []
+      })
+      return
+    }
+    // debugger;
+    let totalPageNum = totalCount / this.pageSize + 1
+    if (totalPageNum % 1 == 0) { //刚好除完
+      totalPageNum--
+    }
+    totalPageNum = parseInt(totalPageNum)
+    console.log(totalPageNum,'totalPageNum')
+    let divider = []
+    for (let i = 1; i <= totalPageNum; ++i) {
+      divider[i] = {
+        num: i,
+        dots: false,
+        active: false
+      }
+    }
+    if(totalPageNum && (divider[currentPage].active = true)){  
+      if(totalPageNum>10){
+        console.log(currentPage,'这页是当前的','===因为大10 所以得打点考虑。。。')
+      }
+    }
+    this.setState({
+      divider
+    })
+  }
+  componentDidMount(){
+    this.createDivider()
   }
   render(){
+    console.log(this.state.divider,'divider....')
     return (
       <div>
-        <div className='pub' onClick={this.iknow.bind(this)}>发布圈子</div>
-      {
-        !this.state.tipForNewBox&&(
-          <div className='div_box '>
-            <span className='iconsquare'></span>
-            <p>新的功能已经上线了</p>
-            <button onClick={this.iknow.bind(this)}>知道了</button>
-          </div>  
-        )
-      }
+        .....
       </div>
     )
   }
