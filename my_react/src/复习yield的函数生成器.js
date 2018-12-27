@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
 class App extends Component{
-
+    *fn(){
+      yield 2;
+      (function(){
+        console.log('自执行')
+      }())
+    }
     render(){
-      var num = 0.02;
-      var a = Number((Number(num)*100).toFixed());
-      console.log(num,a,'num')
+      let iterator = this.fn();
+      console.log(iterator.next().value)
+      console.log(iterator.next().value)
       return (
         <div>
         generator用哪个
