@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import OnlinePic from './OnlinePic'
 class App extends Component{
+
     render(){
+      var num = 0.02;
+      var a = Number((Number(num)*100).toFixed());
+      console.log(num,a,'num')
       return (
         <div>
-        <OnlinePic />
+        generator用哪个
         </div>
       )
     }
