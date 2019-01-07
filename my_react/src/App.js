@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import OnlinePic from './OnlinePic'
+import './index.css';
+import Pending from './Pending'
 class App extends Component{
+
     render(){
       return (
         <div>
-        <OnlinePic />
+        <Pending />
         </div>
       )
     }

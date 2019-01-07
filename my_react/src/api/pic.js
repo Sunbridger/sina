@@ -26,6 +26,5 @@ const getAppUrl = "http://mp.sina.com.cn/aj/intelligent/list";
 
 export const getApp = async (data) => {
   let res = await getJSONP(getAppUrl,data);
-  console.log(res,'真是')
   return res;
 };
